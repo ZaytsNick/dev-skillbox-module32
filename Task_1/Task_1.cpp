@@ -21,7 +21,7 @@ struct Film
 	std::string	writtenBy;
 	std::string	director;
 	std::string	producer;
-	//std::vector<MainCharacter>mainCharacters;	
+	std::vector<MainCharacter>mainCharacters;	
 };
 Film addFilm()
 {
@@ -33,11 +33,11 @@ Film addFilm()
 	temp.writtenBy = "Daniel Scheinert";
 	temp.director = "Daniel Kwan";
 	temp.producer = "Miranda Bailey";
-	/*MainCharacter tempCharacter("Manny", "Daniel Radcliffe");
+	MainCharacter tempCharacter("Manny", "Daniel Radcliffe");
 	temp.mainCharacters.push_back(tempCharacter);
 	tempCharacter.nameCharacter = "Hank";
 	tempCharacter.nameActor= "Paul Dano";
-	temp.mainCharacters.push_back(tempCharacter);	*/
+	temp.mainCharacters.push_back(tempCharacter);	
 	return temp;
 }
 int main()
@@ -45,7 +45,7 @@ int main()
 	Film film1;
 	film1 = addFilm();
 	std::ofstream file("film.json");
-	std::cout << film1.name;
+	std::cout << film1.name << " " << film1.mainCharacters.size();
 	nlohmann::json dict = 	{
 		{ "name",		film1.name},
 		{ "country",	film1.country},
@@ -54,8 +54,12 @@ int main()
 		{ "writtenBy",	film1.writtenBy },
 		{ "director",	film1.director },
 		{ "producer",	film1.producer }
-		//std::vector<MainCharacter>mainCharacters;
 	};
+	for (int i=0; i < film1.mainCharacters.size(); ++i)
+	{
+		dict["mainCharacters"] += { film1.mainCharacters[i].nameActor,film1.mainCharacters[i].nameCharacter };
+	}
+
 	file << dict;
 	file.close();
 	return 0;
