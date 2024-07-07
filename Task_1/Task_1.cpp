@@ -45,7 +45,7 @@ int main()
 	Film film1;
 	film1 = addFilm();
 	std::ofstream file("film.json");
-	std::cout << film1.name << " " << film1.mainCharacters.size();
+
 	nlohmann::json dict = 	{
 		{ "name",		film1.name},
 		{ "country",	film1.country},
