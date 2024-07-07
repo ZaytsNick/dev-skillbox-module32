@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+message compani 
+{
+    required int32  yearOfFoundation =1;
+    required string legalAddress=2;
+    required string title=3;
+    optional string occupation=4;
+    optional bool   foreignEconomicActivities=5;
+}
